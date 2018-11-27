@@ -1,14 +1,37 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE html>
+<?php
+ob_start();
+include '../connection.php';
+if(isset($_POST['sb']))
+{
+    $sn=$_POST['sn'];
+    $yi=  mysqli_query($dbcon,"select * from sptype_tbl  where  sptype_name='$sn'");
+    if(mysqli_num_rows($yi)>0)
+    {
+        header("location:addsptype.php?sp=3");
+    }
+    else
+    {
+    $vb=  mysqli_query($dbcon,"insert into sptype_tbl values('','$sn')");
+    if($vb>0)
+    {
+        header("location:addsptype.php?sp=1");
+    }
+ else {
+        header("location:addsptype.php?sp=2");
+    }
+    }
+}
+if(isset($_GET['spp']))
+{
+    $spp=$_GET['spp'];
+    $ty=  mysqli_query($dbcon,"delete  from sptype_tbl where sptype_id='$spp'");
+    header("location:addsptype.php");
+}
+?>
 <html lang="en">
 
 <head>
-    <title>Modernize an Admin Panel Category Bootstrap Responsive Web Template | 404 Error Page :: w3layouts</title>
+    <title>Disaster Management</title>
     <!-- Meta Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -49,120 +72,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
     <div class="wrapper">
         <!-- Sidebar Holder -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h1>
-                    <a href="index.html">Modernize</a>
-                </h1>
-                <span>M</span>
-            </div>
-            <div class="profile-bg"></div>
-            <ul class="list-unstyled components">
-                <li>
-                    <a href="index.html">
-                        <i class="fas fa-th-large"></i>
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                        <i class="fas fa-laptop"></i>
-                        Components
-                        <i class="fas fa-angle-down fa-pull-right"></i>
-                    </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="cards.html">Cards</a>
-                        </li>
-                        <li>
-                            <a href="carousels.html">Carousels</a>
-                        </li>
-                        <li>
-                            <a href="forms.html">Forms</a>
-                        </li>
-                        <li>
-                            <a href="modals.html">Modals</a>
-                        </li>
-                        <li>
-                            <a href="tables.html">Tables</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="charts.html">
-                        <i class="fas fa-chart-pie"></i>
-                        Charts
-                    </a>
-                </li>
-                <li>
-                    <a href="grids.html">
-                        <i class="fas fa-th"></i>
-                        Grid Layouts
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false">
-                        <i class="far fa-file"></i>
-                        Pages
-                        <i class="fas fa-angle-down fa-pull-right"></i>
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu1">
-                        <li>
-                            <a href="404.html">404</a>
-                        </li>
-                        <li>
-                            <a href="500.html">500</a>
-                        </li>
-                        <li>
-                            <a href="blank.html">Blank</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="mailbox.html">
-                        <i class="far fa-envelope"></i>
-                        Mailbox
-                        <span class="badge badge-secondary float-md-right bg-danger">5 New</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="widgets.html">
-                        <i class="far fa-window-restore"></i>
-                        Widgets
-                    </a>
-                </li>
-                <li>
-                    <a href="pricing.html">
-                        <i class="fas fa-table"></i>
-                        Pricing Tables
-                    </a>
-                </li>
-                <li>
-                    <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false">
-                        <i class="fas fa-users"></i>
-                        User
-                        <i class="fas fa-angle-down fa-pull-right"></i>
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu3">
-                        <li>
-                            <a href="login.html">Login</a>
-                        </li>
-                        <li>
-                            <a href="register.html">Register</a>
-                        </li>
-                        <li>
-                            <a href="forgot.html">Forgot password</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="far fa-map"></i>
-                        Maps
-                    </a>
-                </li>
-            </ul>
-        </nav>
+         <?php
+       
+       include 'menu.php';
+       
+       ?>
 
         <!-- Page Content Holder -->
         <div id="content">
@@ -176,10 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </button>
                     </div>
                     <!-- Search-from -->
-                    <form action="#" method="post" class="form-inline mx-auto search-form">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required="">
-                        <button class="btn btn-style my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                    <h2>Welcome Admin</h2>
                     <!--// Search-from -->
                     <ul class="top-icons-agileits-w3layouts float-right">
                         <li class="nav-item dropdown">
@@ -295,7 +206,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <i class="far fa-thumbs-up mr-3"></i>Support</h4>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login.html">Logout</a>
+                                <a class="dropdown-item" href="logout.php">Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -304,31 +215,73 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!--// top-bar -->
 
             <!-- main-heading -->
-            <h2 class="main-title-w3layouts mb-2 text-center">404 Error Page</h2>
+            <h2 class="main-title-w3layouts mb-2 text-center">Add Services</h2>
             <!--// main-heading -->
 
             <!-- Error Page Content -->
             <section class="error-page-content">
-
+                <div>
+                    <?php
+                    if(isset($_GET['sp']))
+                    {
+                       if($_GET['sp']==1)
+                       {
+                           echo "<font color='green'>Insert Success</font>";
+                       }
+                       if($_GET['sp']==2)
+                       {
+                           echo "<font color='red'>Insert Failed</font>";
+                       }
+                       if($_GET['sp']==3)
+                       {
+                           echo "<font color='blue'>Already Added</font>";
+                       }
+                    }
+                    ?>
+                </div>
                 <!-- Error Page Info -->
                 <div class="outer-w3-agile mt-3">
                     <div class="container py-xl-5 py-4">
                         <div class="row justify-content-center">
                             <div class="errorleft d-xl-flex align-items-center col-xl-4">
-                                <h4 class="error-title-agileits">404</h4>
+                                <form method="post">
+                                    <table class="table table-hover table-bordered">
+                                        <tr>
+                                            <td>Service Name</td>
+                                            <td><input type="text" name="sn" class="form-control"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><center><input type="submit" name="sb" class="btn btn-primary"></center></td>
+                                        </tr>
+                                    </table>
+                                  
+                                </form>
+                               
                             </div>
-                            <div class="error-right col-xl-8">
-                                <span class="error-subtext-w3l">
-                                    <i class="fas fa-exclamation-circle text-warning mr-3"></i>Oops you have encountered an error</span>
-                                <p class="error-text"> It appears the page you are looking for doesn't exist. Sorry about that.</p>
-                                <a class="btn btn-primary error-w3l-btn px-4" href="index.html" role="button">Go to home page</a>
+                            <div class="col-lg-2"></div>
+                            <div class="error-right col-xl-6">
+                                <table class="table-bordered table-hover table table-striped">
+                                    <tr>
+                                        <th>Services</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <?php
+                                    $wq=  mysqli_query($dbcon,"select * from sptype_tbl");
+                                    while ($wq1=  mysqli_fetch_row($wq))
+                                    {
+                                        ?>
+                                    <tr>
+                                        <td><?php echo $wq1[1]?></td>
+                                        <td><a href="addsptype.php?spp=<?php echo $wq1[0]?>" class="fa fa-trash" title="Delete"></a></td>
+                                    </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                    
+                                </table>
                             </div>
                         </div>
-                        <p class="error-text text-center mt-xl-5 mt-4">Would you like to try a search?</p>
-                        <form action="#" method="post" class="form-inline error-search-form  w-xl-50 w-md-75 w-100 mx-auto">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search" required="">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
+                        
                     </div>
                 </div>
                 <!--// Error Page Info -->

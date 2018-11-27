@@ -1,7 +1,7 @@
-<nav id="sidebar">
+ <nav id="sidebar">
             <div class="sidebar-header">
                 <h1>
-                    Manage Disaster
+                    <a href="index.php">Manage Disaster</a>
                 </h1>
                 <span>M</span>
             </div>
@@ -13,20 +13,28 @@
                         Home
                     </a>
                 </li>
-                
+               
                 <li>
-                    <a href="adistrict.php">
+                    <a href="addstate.php">
                         <i class="fas fa-chart-pie"></i>
-                        Manage District
+                        Manage State
                     </a>
                 </li>
-               
+                <li>
+                    <a href="addsptype.php">
+                        <i class="fas fa-th"></i>
+                        Manage Service Type
+                    </a>
+                </li>
+                
+                
+                
                 
                 
                 <li>
-                    <a href="../logout.php">
+                    <a href="logout.php">
                         <i class="far fa-power-off"></i>
-                        Maps
+                        logout
                     </a>
                 </li>
             </ul>
